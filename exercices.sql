@@ -1,10 +1,14 @@
 --1. Liste des potions : Numéro, libellé, formule et constituant principal. (5 lignes)
+select * from potion;
 
 --2. Liste des noms des trophées rapportant 3 points. (2 lignes)
+select * from categorie where nb_points = 3;
 
 --3. Liste des villages (noms) contenant plus de 35 huttes. (4 lignes)
+select nom_village from village where nb_huttes > 35;
 
 --4. Liste des trophées (numéros) pris en mai / juin 52. (4 lignes)
+select num_trophee from trophee where date_prise between '2052-05-01' and '2052-06-30';
 
 --5. Noms des habitants commençant par 'a' et contenant la lettre 'r'. (3 lignes)
 
