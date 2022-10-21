@@ -74,8 +74,6 @@ join fabriquer f on p.num_potion = f.num_potion
 join habitant h2 on f.num_hab = h2.num_hab 
 where h2.nom = 'Amnésix';
 
-selection dis
-
 --14. Nom des habitants dont la qualité n'est pas renseignée. (2 lignes)
 select h.nom from habitant h where h.num_qualite is null; 
 
@@ -140,7 +138,7 @@ join habitant h on v.num_village = h.num_village
 group by p.nom_province ;
 
 --26. Nombre de potions différentes absorbées par chaque habitant (nom et nombre). (9lignes)
-select distinct h.nom, count(a.num_hab)
+select h.nom, count(distinct  a.num_potion) 
 from habitant h 
 join absorber a on h.num_hab = a.num_hab 
 group by h.nom;
@@ -160,6 +158,12 @@ from village v
 join resserre r on v.num_village = r.num_village 
 group by v.nom_village,  r.num_village 
 having r.num_village notnull;
+
+-- v2 avec left join
+select v.nom_village 
+from village v
+left join resserre r on v.num_village = r.num_village 
+where r.num_village notnull;
 
 --29. Nom du village contenant le plus grand nombre de huttes. (Gergovie)
 select v.nom_village 
